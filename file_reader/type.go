@@ -58,7 +58,6 @@ type SDC struct {
 	RedisKey                      string `json:"redis_key"`
 	Filepath                      string `json:"filepath"`
 	PlannedIndependentRequirement struct {
-		PlannedIndependentRequirement string   `json:"PlannedIndependentRequirement"`
 		Product                       string   `json:"Product"`
 		Plant                         string   `json:"Plant"`
 		MRPArea                       string   `json:"MRPArea"`
