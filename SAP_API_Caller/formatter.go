@@ -6,7 +6,7 @@ type PlannedIndependentRequirementReads struct {
 	RedisKey                             string `json:"redis_key"`
 	Filepath                             string `json:"filepath"`
 	APISchema                            string `json:"api_schema"`
-	Product                              string `json:"material_code"`
+	MaterialCode                         string `json:"material_code"`
 	Plant                                string `json:"plant"`
 	Deleted                              string `json:"deleted"`
 }

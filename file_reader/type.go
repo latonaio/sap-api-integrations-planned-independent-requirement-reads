@@ -42,7 +42,7 @@ type EC_MC struct {
 		} `json:"work"`
 	} `json:"production_order"`
 	APISchema                      string      `json:"api_schema"`
-	Product                        string      `json:"material_code"`
+	MaterialCode                   string      `json:"material_code"`
 	Plant                          string      `json:"plant/supplier"`
 	Stock                          float64     `json:"stock"`
 	PlndIndepRqmtType              string      `json:"document_type"`
@@ -73,7 +73,7 @@ type SDC struct {
 		LastChangeDate                string   `json:"LastChangeDate"`
 	} `json:"PlannedIndependentRequirement"`
 	APISchema                            string `json:"api_schema"`
-	Product                              string `json:"material_code"`
+	MaterialCode                              string `json:"material_code"`
 	Plant                                string `json:"plant"`
 	Deleted                              string `json:"deleted"`
 }
