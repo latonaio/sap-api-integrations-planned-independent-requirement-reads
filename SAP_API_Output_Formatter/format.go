@@ -2,13 +2,13 @@ package sap_api_output_formatter
 
 import (
 	"encoding/json"
-	"sap-api-integrations-material-stock-reads/SAP_API_Caller/responses"
+	"sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller/responses"
 
 	"github.com/latonaio/golang-logging-library/logger"
 )
 
-func ConvertToMaterialStock(raw []byte, l *logger.Logger) *MaterialStock {
-	pm := &responses.MaterialStock{}
+func ConvertToPlannedIndependentRequirement(raw []byte, l *logger.Logger) *PlannedIndependentRequirement {
+	pm := &responses.PlannedIndependentRequirement{}
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
 		l.Error(err)
@@ -23,11 +23,19 @@ func ConvertToMaterialStock(raw []byte, l *logger.Logger) *MaterialStock {
 	}
 	data := pm.D.Results[0]
 
-	return &MaterialStock{
-		Material:            data.Material,
-		Plant:               data.Plant,
-		StorageLocation:     data.StorageLocation,
-		Batch:               data.ValidityStartDate,
-		ToMaterialStock:     data.ToMaterialStock,
+	return &PlannedIndependentRequirement{
+		Product                      data.Product,
+		Plant                        data.Plant,
+		MRPArea                      data.MRPArea,
+		PlndIndepRqmtType            data.PlndIndepRqmtType,
+		PlndIndepRqmtVersion         data.PlndIndepRqmtVersion,
+		RequirementPlan              data.RequirementPlan,
+		RequirementSegment           data.RequirementSegment,
+		PlndIndepRqmtInternalID      data.PlndIndepRqmtInternalID,
+		UnitOfMeasure                data.UnitOfMeasure,
+		PlndIndepRqmtPeriod          data.PlndIndepRqmtPeriod,
+		PlndIndepRqmtPeriodStartDate data.PlndIndepRqmtPeriodStartDate,
+		PlannedQuantity              data.PlannedQuantity,
+		LastChangeDate               data.LastChangeDate,
 	}
 }
