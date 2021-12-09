@@ -24,7 +24,8 @@ sap-api-integrations-planned-independent-requirement-reads が対応する API�
 ## 本レポジトリ に 含まれる API名
 sap-api-integrations-planned-independent-requirement-reads には、次の API をコールするためのリソースが含まれています。  
 
-* PlannedIndepRqmt(Product='{Product}',Plant='{Plant}',MRPArea='{MRPArea}',PlndIndepRqmtType='{PlndIndepRqmtType}',PlndIndepRqmtVersion='{PlndIndepRqmtVersion}',RequirementPlan='{RequirementPlan}',RequirementSegment='{RequirementSegment}')/to_PlndIndepRqmtItem（計画独立所要量）
+* PlannedIndepRqmt（計画独立所要量 - ヘッダ）※計画独立所要量の明細データを取得するために、ToPlndIndepRqmtItem、と合わせて利用されます。
+* ToPlndIndepRqmtItem（計画独立所要量 - 明細）
 
 ## API への 値入力条件 の 初期値
 sap-api-integrations-planned-independent-requirement-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
