@@ -15,13 +15,13 @@ func main() {
 		"https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/", l,
 	)
 
-    caller.AsyncGetPlannedIndependentRequirement(
-        inoutSDC.PlannedIndependentRequirement.Product,
-        inoutSDC.PlannedIndependentRequirement.Plant,
-        inoutSDC.PlannedIndependentRequirement.MRPArea,
-        inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtType,
-        inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtVersion,
-        inoutSDC.PlannedIndependentRequirement.RequirementPlan,
-        inoutSDC.PlannedIndependentRequirement.RequirementSegment,
-    )
+	caller.AsyncGetPlannedIndependentRequirement(
+		inoutSDC.PlannedIndependentRequirement.Product,
+		inoutSDC.PlannedIndependentRequirement.Plant,
+		inoutSDC.PlannedIndependentRequirement.MRPArea,
+		inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtType,
+		inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtVersion,
+		inoutSDC.PlannedIndependentRequirement.RequirementPlan,
+		inoutSDC.PlannedIndependentRequirement.RequirementSegment,
+	)
 }

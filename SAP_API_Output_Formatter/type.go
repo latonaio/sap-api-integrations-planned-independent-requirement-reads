@@ -11,19 +11,39 @@ type PlannedIndependentRequirementReads struct {
 	Deleted       bool   `json:"deleted"`
 }
 
-type PlannedIndependentRequirement struct {
-	PlannedIndependentRequirement string `json:"PlannedIndependentRequirement"`
-	Product                       string `json:"Product"`
-	Plant                         string `json:"Plant"`
-	MRPArea                       string `json:"MRPArea"`
-	PlndIndepRqmtType             string `json:"PlndIndepRqmtType"`
-	PlndIndepRqmtVersion          string `json:"PlndIndepRqmtVersion"`
-	RequirementPlan               string `json:"RequirementPlan"`
-	RequirementSegment            string `json:"RequirementSegment"`
-	PlndIndepRqmtInternalID       string `json:"PlndIndepRqmtInternalID"`
-	UnitOfMeasure                 string `json:"UnitOfMeasure"`
-	PlndIndepRqmtPeriod           string `json:"PlndIndepRqmtPeriod"`
-	PlndIndepRqmtPeriodStartDate  string `json:"PlndIndepRqmtPeriodStartDate"`
-	PlannedQuantity               string `json:"PlannedQuantity"`
-	LastChangeDate                string `json:"LastChangeDate"`
+type Header struct {
+			ToPlndIndepRqmtItemOc         bool        `json:"to_PlndIndepRqmtItem_oc"`
+			Product                       string      `json:"Product"`
+			Plant                         string      `json:"Plant"`
+			MRPArea                       string      `json:"MRPArea"`
+			PlndIndepRqmtType             string      `json:"PlndIndepRqmtType"`
+			PlndIndepRqmtVersion          string      `json:"PlndIndepRqmtVersion"`
+			RequirementPlan               string      `json:"RequirementPlan"`
+			RequirementSegment            string      `json:"RequirementSegment"`
+			RequirementPlanIsExternal     bool        `json:"RequirementPlanIsExternal"`
+			PlndIndepRqmtInternalID       string      `json:"PlndIndepRqmtInternalID"`
+			PlndIndepRqmtIsActive         string      `json:"PlndIndepRqmtIsActive"`
+			WBSElement                    string      `json:"WBSElement"`
+			PlndIndepRqmtAcctAssgmtCat    string      `json:"PlndIndepRqmtAcctAssgmtCat"`
+			PlndIndepRqmtLastChgdDateTime string      `json:"PlndIndepRqmtLastChgdDateTime"`
+            ToPlndIndepRqmtItem           string      `json:"to_PlndIndepRqmtItem"`
+}
+
+type ToPlndIndepRqmtItem struct {
+			Product                       string      `json:"Product"`
+			Plant                         string      `json:"Plant"`
+			MRPArea                       string      `json:"MRPArea"`
+			PlndIndepRqmtType             string      `json:"PlndIndepRqmtType"`
+			PlndIndepRqmtVersion          string      `json:"PlndIndepRqmtVersion"`
+			RequirementPlan               string      `json:"RequirementPlan"`
+			RequirementSegment            string      `json:"RequirementSegment"`
+			PlndIndepRqmtPeriod           string      `json:"PlndIndepRqmtPeriod"`
+			PeriodType                    string      `json:"PeriodType"`
+			PlndIndepRqmtPeriodStartDate  string      `json:"PlndIndepRqmtPeriodStartDate"`
+			PlndIndepRqmtInternalID       string      `json:"PlndIndepRqmtInternalID"`
+			WorkingDayDate                string      `json:"WorkingDayDate"`
+			PlannedQuantity               string      `json:"PlannedQuantity"`
+			WithdrawalQuantity            string      `json:"WithdrawalQuantity"`
+			UnitOfMeasure                 string      `json:"UnitOfMeasure"`
+			LastChangeDate                string      `json:"LastChangeDate"`
 }

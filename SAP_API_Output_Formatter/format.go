@@ -5,37 +5,79 @@ import (
 	"sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller/responses"
 
 	"github.com/latonaio/golang-logging-library/logger"
+	"golang.org/x/xerrors"
 )
 
-func ConvertToPlannedIndependentRequirement(raw []byte, l *logger.Logger) *PlannedIndependentRequirement {
-	pm := &responses.PlannedIndependentRequirement{}
+func ConvertToHeader(raw []byte, l *logger.Logger) ([]Header, error) {
+	pm := &responses.Header{}
+
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
-		l.Error(err)
-		return nil
+		return nil, xerrors.Errorf("cannot convert to Header. unmarshal error: %w", err)
 	}
 	if len(pm.D.Results) == 0 {
-		l.Error("Result data is not exist.")
-		return nil
+		return nil, xerrors.New("Result data is not exist")
 	}
-	if len(pm.D.Results) > 1 {
-		l.Error("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
+	if len(pm.D.Results) > 10 {
+		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
+	}
+
+	header := make([]Header, 0, 10)
+	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
+		data := pm.D.Results[i]
+		header = append(header, Header{
+			ToPlndIndepRqmtItemOc:         data.ToPlndIndepRqmtItemOc,
+			Product:                       data.Product,
+			Plant:                         data.Plant,
+			MRPArea:                       data.MRPArea,
+			PlndIndepRqmtType:             data.PlndIndepRqmtType,
+			PlndIndepRqmtVersion:          data.PlndIndepRqmtVersion,
+			RequirementPlan:               data.RequirementPlan,
+			RequirementSegment:            data.RequirementSegment,
+			RequirementPlanIsExternal:     data.RequirementPlanIsExternal,
+			PlndIndepRqmtInternalID:       data.PlndIndepRqmtInternalID,
+			PlndIndepRqmtIsActive:         data.PlndIndepRqmtIsActive,
+			WBSElement:                    data.WBSElement,
+			PlndIndepRqmtAcctAssgmtCat:    data.PlndIndepRqmtAcctAssgmtCat,
+			PlndIndepRqmtLastChgdDateTime: data.PlndIndepRqmtLastChgdDateTime,
+            ToPlndIndepRqmtItem:           data.ToPlndIndepRqmtItem.Deferred.URI,
+		})
+	}
+
+	return header, nil
+}
+
+func ConvertToToPlndIndepRqmtItem(raw []byte, l *logger.Logger) (*ToPlndIndepRqmtItem, error) {
+	pm := &responses.ToPlndIndepRqmtItem{}
+
+	err := json.Unmarshal(raw, pm)
+	if err != nil {
+		return nil, xerrors.Errorf("cannot convert to ToPlndIndepRqmtItem. unmarshal error: %w", err)
+	}
+	if len(pm.D.Results) == 0 {
+		return nil, xerrors.New("Result data is not exist")
+	}
+	if len(pm.D.Results) > 10 {
+		l.Info("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
 	}
 	data := pm.D.Results[0]
 
-	return &PlannedIndependentRequirement{
-		Product                      data.Product,
-		Plant                        data.Plant,
-		MRPArea                      data.MRPArea,
-		PlndIndepRqmtType            data.PlndIndepRqmtType,
-		PlndIndepRqmtVersion         data.PlndIndepRqmtVersion,
-		RequirementPlan              data.RequirementPlan,
-		RequirementSegment           data.RequirementSegment,
-		PlndIndepRqmtInternalID      data.PlndIndepRqmtInternalID,
-		UnitOfMeasure                data.UnitOfMeasure,
-		PlndIndepRqmtPeriod          data.PlndIndepRqmtPeriod,
-		PlndIndepRqmtPeriodStartDate data.PlndIndepRqmtPeriodStartDate,
-		PlannedQuantity              data.PlannedQuantity,
-		LastChangeDate               data.LastChangeDate,
-	}
+	return &ToPlndIndepRqmtItem{
+			Product:                       data.Product,
+			Plant:                         data.Plant,
+			MRPArea:                       data.MRPArea,
+			PlndIndepRqmtType:             data.PlndIndepRqmtType,
+			PlndIndepRqmtVersion:          data.PlndIndepRqmtVersion,
+			RequirementPlan:               data.RequirementPlan,
+			RequirementSegment:            data.RequirementSegment,
+			PlndIndepRqmtPeriod:           data.PlndIndepRqmtPeriod,
+			PeriodType:                    data.PeriodType,
+			PlndIndepRqmtPeriodStartDate:  data.PlndIndepRqmtPeriodStartDate,
+			PlndIndepRqmtInternalID:       data.PlndIndepRqmtInternalID,
+			WorkingDayDate:                data.WorkingDayDate,
+			PlannedQuantity:               data.PlannedQuantity,
+			WithdrawalQuantity:            data.WithdrawalQuantity,
+			UnitOfMeasure:                 data.UnitOfMeasure,
+			LastChangeDate:                data.LastChangeDate,
+	}, nil
 }

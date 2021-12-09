@@ -46,7 +46,7 @@ type EC_MC struct {
 	Plant                          string      `json:"plant/supplier"`
 	Stock                          string      `json:"stock"`
 	PlndIndepRqmtType              string      `json:"document_type"`
-	PlannedIndependentRequirement  string      `json:"document_no"`
+	PlannedIndependentRequirementNo  string      `json:"document_no"`
 	PlndIndepRqmtPeriodStartDate   string      `json:"planned_date"`
 	ValidatedDate                  string      `json:"validated_date"`
 	Deleted                        bool        `json:"deleted"`
