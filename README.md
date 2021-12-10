@@ -37,5 +37,5 @@ sap-api-integrations-planned-independent-requirement-reads において、API �
 * inoutSDC.PlannedIndependentRequirement.MRPArea（MRPエリア）
 * inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtType（計画独立所要量タイプ）
 * inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtVersion（計画独立所要量バージョン）
-* inoutSDC.PlannedIndependentRequirement.RequirementPlan（要求プラン）
+* inoutSDC.PlannedIndependentRequirement.RequirementPlan（所要量プラン）
 * inoutSDC.PlannedIndependentRequirement.RequirementSegment（所要量セグメント要素）
