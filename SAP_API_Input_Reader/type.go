@@ -41,15 +41,15 @@ type EC_MC struct {
 			ActualValidatedTime      string      `json:"actual_validated_time"`
 		} `json:"work"`
 	} `json:"production_order"`
-	APISchema                      string      `json:"api_schema"`
-	MaterialCode                   string      `json:"material_code"`
-	Plant                          string      `json:"plant/supplier"`
-	Stock                          string      `json:"stock"`
-	PlndIndepRqmtType              string      `json:"document_type"`
+	APISchema                        string      `json:"api_schema"`
+	MaterialCode                     string      `json:"material_code"`
+	Plant                            string      `json:"plant/supplier"`
+	Stock                            string      `json:"stock"`
+	PlndIndepRqmtType                string      `json:"document_type"`
 	PlannedIndependentRequirementNo  string      `json:"document_no"`
-	PlndIndepRqmtPeriodStartDate   string      `json:"planned_date"`
-	ValidatedDate                  string      `json:"validated_date"`
-	Deleted                        bool        `json:"deleted"`
+	PlndIndepRqmtPeriodStartDate     string      `json:"planned_date"`
+	ValidatedDate                    string      `json:"validated_date"`
+	Deleted                          bool        `json:"deleted"`
 }
 
 type SDC struct {
@@ -58,22 +58,23 @@ type SDC struct {
 	RedisKey                      string `json:"redis_key"`
 	Filepath                      string `json:"filepath"`
 	PlannedIndependentRequirement struct {
-		Product                       string   `json:"Product"`
-		Plant                         string   `json:"Plant"`
-		MRPArea                       string   `json:"MRPArea"`
-		PlndIndepRqmtType             string   `json:"PlndIndepRqmtType"`
-		PlndIndepRqmtVersion          string   `json:"PlndIndepRqmtVersion"`
-		RequirementPlan               string   `json:"RequirementPlan"`
-		RequirementSegment            string   `json:"RequirementSegment"`
-		PlndIndepRqmtInternalID       string   `json:"PlndIndepRqmtInternalID"`
-		UnitOfMeasure                 string   `json:"UnitOfMeasure"`
-		PlndIndepRqmtPeriod           string   `json:"PlndIndepRqmtPeriod"`
-		PlndIndepRqmtPeriodStartDate  string   `json:"PlndIndepRqmtPeriodStartDate"`
-		PlannedQuantity               string   `json:"PlannedQuantity"`
-		LastChangeDate                string   `json:"LastChangeDate"`
+		Product                      string `json:"Product"`
+		Plant                        string `json:"Plant"`
+		MRPArea                      string `json:"MRPArea"`
+		PlndIndepRqmtType            string `json:"PlndIndepRqmtType"`
+		PlndIndepRqmtVersion         string `json:"PlndIndepRqmtVersion"`
+		RequirementPlan              string `json:"RequirementPlan"`
+		RequirementSegment           string `json:"RequirementSegment"`
+		PlndIndepRqmtInternalID      string `json:"PlndIndepRqmtInternalID"`
+		UnitOfMeasure                string `json:"UnitOfMeasure"`
+		PlndIndepRqmtPeriod          string `json:"PlndIndepRqmtPeriod"`
+		PlndIndepRqmtPeriodStartDate string `json:"PlndIndepRqmtPeriodStartDate"`
+		PlannedQuantity              string `json:"PlannedQuantity"`
+		LastChangeDate               string `json:"LastChangeDate"`
 	} `json:"PlannedIndependentRequirement"`
-	APISchema       string `json:"api_schema"`
-	MaterialCode    string `json:"material_code"`
-	Plant           string `json:"plant"`
-	Deleted         bool   `json:"deleted"`
+	APISchema    string   `json:"api_schema"`
+	Accepter     []string `json:"accepter"`
+	MaterialCode string   `json:"material_code"`
+	Plant        string   `json:"plant"`
+	Deleted      bool     `json:"deleted"`
 }

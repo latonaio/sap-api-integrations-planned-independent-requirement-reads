@@ -15,27 +15,55 @@ sap-api-integrations-planned-independent-requirement-reads は、主にエッジ
 ## クラウド環境での利用  
 sap-api-integrations-planned-independent-requirement-reads は、外部システムがクラウド環境である場合にSAPと統合するときにおいても、利用可能なように設計されています。  
 
-## 本レポジトリ が 対応する API サービス
-sap-api-integrations-planned-independent-requirement-reads が対応する APIサービス は、次のものです。
+## SAP API Bussiness Hub の API の選択的コール
 
-* APIサービス概要説明 URL: https://api.sap.com/api/OP_API_PLND_INDEP_RQMT_SRV_0001/overview  
-* APIサービス名(=baseURL): API_PLND_INDEP_RQMT_SRV
+Latona および AION の SAP 関連リソースでは、Inputs フォルダ下の sample.json の accepter に取得したいデータの種別（＝APIの種別）を入力し、指定することができます。  
+なお、同 accepter にAll(もしくは空白)の値を入力することで、全データ（＝全APIの種別）をまとめて取得することができます。  
 
-## 本レポジトリ に 含まれる API名
-sap-api-integrations-planned-independent-requirement-reads には、次の API をコールするためのリソースが含まれています。  
+* sample.jsonの記載例(1)  
 
-* PlannedIndepRqmt（計画独立所要量 - ヘッダ）※計画独立所要量の明細データを取得するために、ToPlndIndepRqmtItem、と合わせて利用されます。
-* ToPlndIndepRqmtItem（計画独立所要量 - 明細）
+accepter において 下記の例のように、データの種別（＝APIの種別）を指定します。  
+ここでは、 "PlannedIndependentRequirement"が指定されています。    
+  
+```
+"api_schema": "/PlannedIndepRqmt(Product='{Product}',Plant='{Plant}',MRPArea='{MRPArea}',PlndIndepRqmtType='{PlndIndepRqmtType}',PlndIndepRqmtVersion='{PlndIndepRqmtVersion}',RequirementPlan='{RequirementPlan}',RequirementSegment='{RequirementSegment}')/to_PlndIndepRqmtItem",
+	"accepter": ["PlannedIndependentRequirement"],
+	"material_code": "100141",
+	"plant": "1000",
+	"deleted": false
+```
+  
+* 全データを取得する際のsample.jsonの記載例(2)  
 
-## API への 値入力条件 の 初期値
-sap-api-integrations-planned-independent-requirement-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
+全データを取得する場合、sample.json は以下のように記載します。  
 
-### SDC レイアウト
+```
+  "api_schema": "sap.s4.beh.product.v1.Product.Created.v1",
+  "accepter": ["All"],
+  "material_code": "21",
+  "deleted": false
+```
+## 指定されたデータ種別のコール
 
-* inoutSDC.PlannedIndependentRequirement.Product（品目）
-* inoutSDC.PlannedIndependentRequirement.Plant（プラント）
-* inoutSDC.PlannedIndependentRequirement.MRPArea（MRPエリア）
-* inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtType（計画独立所要量タイプ）
-* inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtVersion（計画独立所要量バージョン）
-* inoutSDC.PlannedIndependentRequirement.RequirementPlan（所要量プラン）
-* inoutSDC.PlannedIndependentRequirement.RequirementSegment（所要量セグメント要素）
+accepter における データ種別 の指定に基づいて SAP_API_Caller 内の caller.go で API がコールされます。  
+caller.go の func() 毎 の 以下の箇所が、指定された API をコールするソースコードです。  
+
+```
+func (c *SAPAPICaller) AsyncGetProductMaster(product, plant, mrpArea, valuationArea, productSalesOrg, productDistributionChnl string, accepter []string) {
+	wg := &sync.WaitGroup{}
+	wg.Add(len(accepter))
+	for _, fn := range accepter {
+		switch fn {
+		case "PlannedIndependentRequirement":
+			func() {
+				c.PlannedIndependentRequirement(Product, Plant, MRPArea, PlndIndepRqmtType, PlndIndepRqmtVersion, RequirementPlan, RequirementSegment)
+				wg.Done()
+			}()
+		default:
+			wg.Done()
+		}
+	}
+
+	wg.Wait()
+}
+```

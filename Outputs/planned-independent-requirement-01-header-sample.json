@@ -1,7 +1,0 @@
-{
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller/caller.go#L46",
-	"function": "sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller.(*SAPAPICaller).Header",
-	"level": "INFO",
-	"message": "[{ToPlndIndepRqmtItemOc:true Product:TG0012 Plant:1710 MRPArea:1710 PlndIndepRqmtType:VSF PlndIndepRqmtVersion:00 RequirementPlan: RequirementSegment: RequirementPlanIsExternal:false PlndIndepRqmtInternalID:42 PlndIndepRqmtIsActive:X WBSElement: PlndIndepRqmtAcctAssgmtCat: PlndIndepRqmtLastChgdDateTime: ToPlndIndepRqmtItem:https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV/PlannedIndepRqmt(Product='TG0012',Plant='1710',MRPArea='1710',PlndIndepRqmtType='VSF',PlndIndepRqmtVersion='00',RequirementPlan='',RequirementSegment='')/to_PlndIndepRqmtItem}]",
-	"time": "2021-12-09T14:37:00.705289+09:00"
-}

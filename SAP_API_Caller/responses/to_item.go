@@ -1,6 +1,6 @@
 package responses
 
-type ToPlndIndepRqmtItem struct {
+type ToItem struct {
 	D struct {
 		Results []struct {
 			Metadata struct {
@@ -9,6 +9,7 @@ type ToPlndIndepRqmtItem struct {
 				Type string `json:"type"`
 				Etag string `json:"etag"`
 			} `json:"__metadata"`
+			UpdateMc                      bool        `json:"Update_mc"`
 			Product                       string      `json:"Product"`
 			Plant                         string      `json:"Plant"`
 			MRPArea                       string      `json:"MRPArea"`
@@ -24,7 +25,9 @@ type ToPlndIndepRqmtItem struct {
 			PlannedQuantity               string      `json:"PlannedQuantity"`
 			WithdrawalQuantity            string      `json:"WithdrawalQuantity"`
 			UnitOfMeasure                 string      `json:"UnitOfMeasure"`
+			LastChangedByUser             string      `json:"LastChangedByUser"`
 			LastChangeDate                string      `json:"LastChangeDate"`
+			PlndIndepRqmtLastChgdDateTime string      `json:"PlndIndepRqmtLastChgdDateTime"`
 		} `json:"results"`
 	} `json:"d"`
 }

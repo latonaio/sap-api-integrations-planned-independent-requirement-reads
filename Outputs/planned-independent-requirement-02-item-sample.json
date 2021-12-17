@@ -1,7 +1,0 @@
-{
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller/caller.go#L53",
-	"function": "sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller.(*SAPAPICaller).Header",
-	"level": "INFO",
-	"message": "&{Product:TG0012 Plant:1710 MRPArea:1710 PlndIndepRqmtType:VSF PlndIndepRqmtVersion:00 RequirementPlan: RequirementSegment: PlndIndepRqmtPeriod:201706 PeriodType:M PlndIndepRqmtPeriodStartDate:/Date(1496275200000)/ PlndIndepRqmtInternalID:42 WorkingDayDate:/Date(1496275200000)/ PlannedQuantity:0 WithdrawalQuantity:0 UnitOfMeasure:PC LastChangeDate:/Date(1511395200000)/}",
-	"time": "2021-12-09T14:37:01.357552+09:00"
-}

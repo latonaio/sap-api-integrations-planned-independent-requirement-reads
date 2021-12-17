@@ -9,6 +9,7 @@ type Header struct {
 				Type string `json:"type"`
 				Etag string `json:"etag"`
 			} `json:"__metadata"`
+			UpdateMc                      bool        `json:"Update_mc"`
 			ToPlndIndepRqmtItemOc         bool        `json:"to_PlndIndepRqmtItem_oc"`
 			Product                       string      `json:"Product"`
 			Plant                         string      `json:"Plant"`
@@ -23,7 +24,7 @@ type Header struct {
 			WBSElement                    string      `json:"WBSElement"`
 			PlndIndepRqmtAcctAssgmtCat    string      `json:"PlndIndepRqmtAcctAssgmtCat"`
 			PlndIndepRqmtLastChgdDateTime string      `json:"PlndIndepRqmtLastChgdDateTime"`
-			ToPlndIndepRqmtItem           struct {
+			ToItem           struct {
 				Deferred struct {
 					URI string `json:"uri"`
 				} `json:"__deferred"`
