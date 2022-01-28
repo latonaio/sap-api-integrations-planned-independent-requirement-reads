@@ -4,7 +4,7 @@ import (
 	sap_api_caller "sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller"
 	"sap-api-integrations-planned-independent-requirement-reads/sap_api_input_reader"
 
-	"github.com/latonaio/golang-logging-library/logger"
+	"github.com/latonaio/golang-logging-library-for-sap/logger"
 )
 
 func main() {

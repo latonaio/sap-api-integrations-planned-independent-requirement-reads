@@ -26,10 +26,10 @@ accepter において 下記の例のように、データの種別（＝APIの�
 ここでは、 "PlannedIndependentRequirement"が指定されています。    
   
 ```
-"api_schema": "/PlannedIndepRqmt(Product='{Product}',Plant='{Plant}',MRPArea='{MRPArea}',PlndIndepRqmtType='{PlndIndepRqmtType}',PlndIndepRqmtVersion='{PlndIndepRqmtVersion}',RequirementPlan='{RequirementPlan}',RequirementSegment='{RequirementSegment}')/to_PlndIndepRqmtItem",
-	"accepter": ["PlannedIndependentRequirement"],
-	"material_code": "100141",
-	"plant": "1000",
+	"api_schema": "/PlannedIndepRqmt",
+	"accepter": ["Header"],
+	"material_code": "FG-FL-MV-V00",
+	"plant": "1710",
 	"deleted": false
 ```
   
@@ -38,11 +38,13 @@ accepter において 下記の例のように、データの種別（＝APIの�
 全データを取得する場合、sample.json は以下のように記載します。  
 
 ```
-  "api_schema": "sap.s4.beh.product.v1.Product.Created.v1",
-  "accepter": ["All"],
-  "material_code": "21",
-  "deleted": false
+	"api_schema": "/PlannedIndepRqmt",
+	"accepter": ["All"],
+	"material_code": "FG-FL-MV-V00",
+	"plant": "1710",
+	"deleted": false
 ```
+
 ## 指定されたデータ種別のコール
 
 accepter における データ種別 の指定に基づいて SAP_API_Caller 内の caller.go で API がコールされます。  
@@ -70,17 +72,61 @@ func (c *SAPAPICaller) AsyncGetProductMaster(product, plant, mrpArea, valuationA
 
 ## Output  
 本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
-以下の sample.json の例は、SAP 購買情報 の 一般データ が取得された結果の JSON の例です。  
-以下の項目のうち、"WorkCenterInternalID" ～ "WorkCenterIsToBeDeleted" は、/SAP_API_Output_Formatter/type.go 内 の Type Product {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
+以下の sample.json の例は、SAP 計画独立所要量 の ヘッダデータ が取得された結果の JSON の例です。  
+以下の項目のうち、"Update_mc" ～ "PlndIndepRqmtLastChgdDateTime" は、/SAP_API_Output_Formatter/type.go 内 の Type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
 
 ```
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-work-center-reads/SAP_API_Caller/caller.go#L46",
-	"function": "sap-api-integrations-work-center-reads/SAP_API_Caller.(*SAPAPICaller).WorkCenter",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller/caller.go#L60",
+	"function": "sap-api-integrations-planned-independent-requirement-reads/SAP_API_Caller.(*SAPAPICaller).Header",
 	"level": "INFO",
-	"message": "&{WorkCenterInternalID:10000000 WorkCenterTypeCode:A WorkCenter:ASSEMBLY WorkCenterDesc: Plant:1010 WorkCenterCategoryCode:0001 WorkCenterResponsible:001 SupplyArea: WorkCenterUsage:009 MatlCompIsMarkedForBackflush:false WorkCenterLocation: CapacityInternalID:10000000 CapacityCategoryCode:001 ValidityStartDate:2016-06-24 ValidityEndDate:9999-12-31 WorkCenterIsToBeDeleted:false}",
-	"time": "2021-12-09T15:17:10.997107+09:00"
+	"message": [
+		{
+			"Update_mc": true,
+			"Product": "FG-FL-MV-V00",
+			"Plant": "1710",
+			"MRPArea": "1710",
+			"PlndIndepRqmtType": "VSF",
+			"PlndIndepRqmtVersion": "00",
+			"RequirementPlan": "",
+			"RequirementSegment": "",
+			"PlndIndepRqmtPeriod": "201711",
+			"PeriodType": "M",
+			"PlndIndepRqmtPeriodStartDate": "/Date(1509494400000)/",
+			"PlndIndepRqmtInternalID": "101",
+			"WorkingDayDate": "/Date(1509494400000)/",
+			"PlannedQuantity": "0",
+			"WithdrawalQuantity": "0",
+			"UnitOfMeasure": "PC",
+			"LastChangedByUser": "CB9980000078",
+			"LastChangeDate": "/Date(1511827200000)/",
+			"PlndIndepRqmtLastChgdDateTime": ""
+		},
+		{
+			"Update_mc": true,
+			"Product": "FG-FL-MV-V00",
+			"Plant": "1710",
+			"MRPArea": "1710",
+			"PlndIndepRqmtType": "VSF",
+			"PlndIndepRqmtVersion": "00",
+			"RequirementPlan": "",
+			"RequirementSegment": "",
+			"PlndIndepRqmtPeriod": "201712",
+			"PeriodType": "M",
+			"PlndIndepRqmtPeriodStartDate": "/Date(1512086400000)/",
+			"PlndIndepRqmtInternalID": "101",
+			"WorkingDayDate": "/Date(1512086400000)/",
+			"PlannedQuantity": "0",
+			"WithdrawalQuantity": "0",
+			"UnitOfMeasure": "PC",
+			"LastChangedByUser": "CB9980000078",
+			"LastChangeDate": "/Date(1511827200000)/",
+			"PlndIndepRqmtLastChgdDateTime": ""
+		}
+	],
+	"time": "2021-12-17T17:22:46.68264+09:00"
 }
+
 
 ```
 
