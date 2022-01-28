@@ -71,9 +71,9 @@ func (c *SAPAPICaller) AsyncGetProductMaster(product, plant, mrpArea, valuationA
 ```
 
 ## Output  
-本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
+本マイクロサービスでは、[golang-logging-library-for-sap](https://github.com/latonaio/golang-logging-library-for-sap) により、以下のようなデータがJSON形式で出力されます。  
 以下の sample.json の例は、SAP 計画独立所要量 の ヘッダデータ が取得された結果の JSON の例です。  
-以下の項目のうち、"Update_mc" ～ "PlndIndepRqmtLastChgdDateTime" は、/SAP_API_Output_Formatter/type.go 内 の Type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
+以下の項目のうち、"Update_mc" ～ "PlndIndepRqmtLastChgdDateTime" は、/SAP_API_Output_Formatter/type.go 内 の Type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library-for-sap による 定型フォーマットの出力結果です。  
 
 ```
 {
@@ -92,14 +92,14 @@ func (c *SAPAPICaller) AsyncGetProductMaster(product, plant, mrpArea, valuationA
 			"RequirementSegment": "",
 			"PlndIndepRqmtPeriod": "201711",
 			"PeriodType": "M",
-			"PlndIndepRqmtPeriodStartDate": "/Date(1509494400000)/",
+			"PlndIndepRqmtPeriodStartDate": "2017-11-01T09:00:00+09:00",
 			"PlndIndepRqmtInternalID": "101",
-			"WorkingDayDate": "/Date(1509494400000)/",
+			"WorkingDayDate": "2017-11-01T09:00:00+09:00",
 			"PlannedQuantity": "0",
 			"WithdrawalQuantity": "0",
 			"UnitOfMeasure": "PC",
 			"LastChangedByUser": "CB9980000078",
-			"LastChangeDate": "/Date(1511827200000)/",
+			"LastChangeDate": "2017-11-28T09:00:00+09:00",
 			"PlndIndepRqmtLastChgdDateTime": ""
 		},
 		{
@@ -113,21 +113,19 @@ func (c *SAPAPICaller) AsyncGetProductMaster(product, plant, mrpArea, valuationA
 			"RequirementSegment": "",
 			"PlndIndepRqmtPeriod": "201712",
 			"PeriodType": "M",
-			"PlndIndepRqmtPeriodStartDate": "/Date(1512086400000)/",
+			"PlndIndepRqmtPeriodStartDate": "2017-12-01T09:00:00+09:00",
 			"PlndIndepRqmtInternalID": "101",
-			"WorkingDayDate": "/Date(1512086400000)/",
+			"WorkingDayDate": "2017-12-01T09:00:00+09:00",
 			"PlannedQuantity": "0",
 			"WithdrawalQuantity": "0",
 			"UnitOfMeasure": "PC",
 			"LastChangedByUser": "CB9980000078",
-			"LastChangeDate": "/Date(1511827200000)/",
+			"LastChangeDate": "2017-11-28T09:00:00+09:00",
 			"PlndIndepRqmtLastChgdDateTime": ""
 		}
 	],
-	"time": "2021-12-17T17:22:46.68264+09:00"
+	"time": "2022-01-28T14:16:59+09:00"
 }
-
-
 ```
 
 
