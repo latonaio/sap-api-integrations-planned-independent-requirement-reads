@@ -14,7 +14,32 @@ sap-api-integrations-planned-independent-requirement-reads は、主にエッジ
 
 ## クラウド環境での利用  
 sap-api-integrations-planned-independent-requirement-reads は、外部システムがクラウド環境である場合にSAPと統合するときにおいても、利用可能なように設計されています。  
+　　
+## 本レポジトリ が 対応する API サービス
+sap-api-integrations-planned-independent-requirement-reads が対応する APIサービス は、次のものです。
 
+* APIサービス概要説明 URL: https://api.sap.com/api/OP_API_PLND_INDEP_RQMT_SRV_0001/overview    
+* APIサービス名(=baseURL): API_PLND_INDEP_RQMT_SRV
+
+## 本レポジトリ に 含まれる API名
+sap-api-integrations-planned-independent-requirement-reads には、次の API をコールするためのリソースが含まれています。  
+
+* A_PlannedIndependentRequirement（計画独立所要量 - ヘッダ）※計画独立所要量の詳細データを取得するために、ToItemと合わせて利用されます。
+* ToItem（計画独立所要量 - 明細）
+
+## API への 値入力条件 の 初期値
+sap-api-integrations-planned-independent-requirement-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
+
+### SDC レイアウト
+
+* inoutSDC.PlannedIndependentRequirement.Product（品目）
+* inoutSDC.PlannedIndependentRequirement.Plant（プラント）
+* inoutSDC.PlannedIndependentRequirement.MRPArea（MRPエリア）
+* inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtType（計画独立所要量タイプ）
+* inoutSDC.PlannedIndependentRequirement.PlndIndepRqmtVersion（計画独立所要量バージョン）
+* inoutSDC.PlannedIndependentRequirement.RequirementPlan（計画独立所要量プラン）
+* inoutSDC.PlannedIndependentRequirement.RequirementSegment（計画独立所要量セグメント）
+  
 ## SAP API Bussiness Hub の API の選択的コール
 
 Latona および AION の SAP 関連リソースでは、Inputs フォルダ下の sample.json の accepter に取得したいデータの種別（＝APIの種別）を入力し、指定することができます。  
